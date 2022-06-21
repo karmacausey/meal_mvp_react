@@ -1,0 +1,246 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;  
+}
+
+button {
+  border:none;
+  box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+button:hover {
+  background-color: brown;
+  transition: 0.7s;
+}
+
+h1 {
+  max-width: 98vw;
+  font-family: sans-serif;
+  align-items: center;
+  text-shadow: 3px 3px black;
+  color: cornsilk;
+  padding: 0;
+}
+
+h3 {
+  font-family: sans-serif;
+  font-size:xx-large;
+  align-items: center;
+  text-shadow: 3px 3px black;
+  color: cornsilk;
+  padding: 0;
+
+}
+
+h5 {
+  font-family: sans-serif;
+  font-size: 25px;
+  align-items: center;
+  color: black;
+  margin: 0px 0px 0px 0px;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#logout{
+  position:sticky;
+  top: 15px;    
+  z-index:100;
+}
+#pwordRset{
+  position:sticky;
+  top: 20px;    
+  z-index:100;
+}
+.rightDiv{
+  position: fixed;
+  right: 0;
+  z-index:100;
+}
+.leftDiv{
+  position: fixed;
+  left: 0;
+  z-index:100;
+}
+.roundedContainerNoHover {
+  display: flex;
+  flex-direction: column;
+  background-color: cornsilk;
+  width: 97.5vw;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 6);
+  transition: 0.3s;
+  opacity: 100%;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.roundedContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: cornsilk;
+  width: 97.5vw;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 6);
+  transition: 0.3s;
+  opacity: 80%;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.roundedContainer:hover {
+  opacity: 100;
+  box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 9);
+}
+
+.leftroundedContainer {
+  display: flex;
+  flex-direction: row;
+  background-color: cornsilk;
+  width: 97.5vw;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 6);
+  transition: 0.3s;
+  opacity: 80%;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 0;
+}
+
+.leftroundedContainer:hover {
+  opacity: 100;
+  box-shadow: 0 12px 30px 0 rgba(0, 0, 0, 9);
+}
+
+.leftimg {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 40vw;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 50vw;
+}
+
+.bottomMiddleDiv {
+  position: absolute;
+  bottom: 50vh;
+  display: flex;
+  flex-direction: row;
+  width: 98vw;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.centerDiv {
+  display: flex;
+  flex-direction: row;
+  width: 98vw;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.spacer {
+  width: 50vw;
+}
+
+div {
+  max-width: 100vw;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.newUserButton {
+  text-decoration: underline;
+  width: 20px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.searchBar {
+  height: 10vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+.mainDiv {
+  background-image: url('./background.jpg');
+  /* background-repeat: repeat; */
+  background-size: cover;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 99vw;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+#email {
+  width: 12.5rem;
+}
+
+.ingredient {
+  padding: 0;
+  margin: 0;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: cornsilk;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;   
+  border-style: solid;
+  border-radius: 5px;
+  width: 35vw;
+  height: 3vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
