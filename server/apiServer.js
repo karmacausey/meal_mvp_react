@@ -100,7 +100,7 @@ app.get("/search/:keyword", async (req, res) => {
             let rID = uriParts[uriParts.length - 1];
             console.log("rID: " + rID);
             const currentResult = {
-                recipe_id: `${rID}`,
+                meal_id: `${rID}`,
                 image_url: `${data.hits[i].recipe.images.REGULAR.url}`,
                 name: `${data.hits[i].recipe.label}`,
                 ingredient_list: `${data.hits[i].recipe.ingredientLines}`,
@@ -125,15 +125,15 @@ app.post("/favorite", async (req, res) => {
 });
 
 //delete: delete a favorite recipe from users list
-// app.delete("/favorite", async (req, res) => {
-//     try {
-//         db.query('DELETE FROM Meals WHERE meal_id=$1', [req.body.meal_id]);
-//         db.query('DELETE FROM Favorites WHERE meal_id=$1', [req.body.meal_id]);
-//         res.json(req.body);
-//     } catch (error) {
-//         res.json(error);
-//     }
-// })
+app.delete("/favorite", async (req, res) => {
+    try {        
+        console.log(`delete function ---->req.body.user_id: ${req.body.user_id} , req.body.meal_id: ${req.body.meal_id}`)
+        db.query('DELETE FROM Favorites WHERE user_id=$1 AND meal_id=$2', [req.body.user_id, req.body.meal_id]);
+        res.json(req.body);
+    } catch (error) {
+        res.json(error);
+    }
+})
 
 // future functionality
 //update: reset password

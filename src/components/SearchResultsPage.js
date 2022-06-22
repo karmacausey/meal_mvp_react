@@ -9,8 +9,7 @@ function SearchResultsPage(props){
             <SearchBar clickEvent={props.clickEvent} btnTitle={"search"}/>
             <div className="pageList">
                 {props.searchResults.map((elem, index) => {
-                    console.log(elem.recipe_id)
-                    return <RecipeItem elem={elem} clickEvent={props.clickItem} id={elem.recipe_id} key={index}/>                
+                    return <RecipeItem elem={elem} clickEvent={props.clickItem} id={elem.meal_id} key={index}/>                
                 })}
             </div>
         </div>

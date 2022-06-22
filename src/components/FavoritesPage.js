@@ -9,7 +9,7 @@ function FavoritesPage(props){
             <SearchBar clickEvent={props.clickEvent} btnTitle={"search"}/> 
             <div className="pageList">
                 {props.favorites.map((elem, index) => {
-                    return <RecipeItem elem={elem} clickEvent={props.clickItem} key={index}/>
+                    return <RecipeItem elem={elem} clickEvent={props.clickItem} id={elem.meal_id} key={index}/>
                 })}
             </div>
         </div>

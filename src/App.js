@@ -77,18 +77,18 @@ function App() {
   }
 
   const clickFavorite = async (meal_id) => {
-  //   console.log("entered clickFavorite async function")
-  //   fetch(`${server}/favorite`, {
-  //     method: "POST",
-  //     mode: 'cors',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ user_id: `${user.user_id}`, meal_id: `${meal_id}` })  
-  //   })
-  //   .then((res) => res.json())
-  //   .then((data) => storeResults(data))
-  //   .catch(console.error())
+    console.log(`entered clickFavorite async function | meal_id: ${meal_id}`)
+    fetch(`${server}/favorite`, {
+      method: "DELETE",
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id: `${user.user_id}`, meal_id: `${meal_id}` })  
+    })
+    .then((res) => res.json())
+    .then(() => loadPage("login"))
+    .catch(console.error())
   }
 
   const loadNewUserPage = ()=> {

@@ -3,9 +3,8 @@ import { useState } from "react";
 import IngredientItem from "./IngredientItem";
 
 function RecipeItem(props){
-    const [recipeID] = useState(props.elem.recipe_id)
-    const handleClick = (e) => {       
-        console.log(recipeID) 
+    const [recipeID] = useState(props.elem.meal_id)
+    const handleClick = () => {       
         props.clickEvent(recipeID)
     }
 
