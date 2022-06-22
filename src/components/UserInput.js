@@ -29,8 +29,7 @@ function UserInput(props){
                 </p>
             </div>
             <div>
-                <p>
-                    Password:
+                <p>Password:
                     <input 
                     value={pword}
                     type="text" 
@@ -39,7 +38,7 @@ function UserInput(props){
                     ></input>
                 </p>
             </div>
-            <div>
+            <div className="padded">
                 <button id={props.btnTitle} type="submit">
                     {props.btnTitle}
                 </button>
