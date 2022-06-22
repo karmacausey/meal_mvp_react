@@ -13,8 +13,10 @@ function App() {
   const [user, setUser] = useState(null)
   const [searchResults, storeResults] = useState(null)
   //Functions
+
+  //called by login button from LoginPage
   const loginUser = (username, pword) => { 
-    console.log(`entered loginUser function | username: ${username} | pword: ${pword}`)   
+    //console.log(`entered loginUser function | username: ${username} | pword: ${pword}`)   
     fetch(`${server}/user`, {
       method: "POST",
       mode: 'cors',
@@ -28,8 +30,9 @@ function App() {
     .catch(console.error())
   }
 
+  //called by New User button on the NewUserPage
   const createNewUser = (username, pword) => { 
-    console.log("entered createNewUser function")   
+    //console.log("entered createNewUser function")   
     fetch(`${server}/newuser`, {
       method: "POST",
       mode: 'cors',
@@ -41,6 +44,7 @@ function App() {
     .then(() => loadPage("login"))
   }
 
+  //called by search button on SearchBar component, currently on FavoritesPage and SearchResultsPage
   const submitSearch = async (searchText) => {
     console.log("entered submitSearch async function")
     fetch(`${server}/search/${searchText}`, {
@@ -57,8 +61,9 @@ function App() {
       // console.log(`searchResults.ingredientList: ${searchResults.ingredientList}`)         
   }
 
+  //
   const clickSearchItem = async (meal_id) => {
-    console.log("entered clickSearchItem async function")
+    console.log(`entered clickSearchItem async function| meal_id: ${meal_id}`)
     fetch(`${server}/favorite`, {
       method: "POST",
       mode: 'cors',
@@ -71,7 +76,7 @@ function App() {
     .catch(console.error())
   }
 
-  // const clickFavorite = async (meal_id) => {
+  const clickFavorite = async (meal_id) => {
   //   console.log("entered clickFavorite async function")
   //   fetch(`${server}/favorite`, {
   //     method: "POST",
@@ -84,7 +89,7 @@ function App() {
   //   .then((res) => res.json())
   //   .then((data) => storeResults(data))
   //   .catch(console.error())
-  // }
+  }
 
   const loadNewUserPage = ()=> {
     console.log("loadNewUserPage called")
@@ -102,7 +107,7 @@ function App() {
       if(user === null){
         return <LoginPage newUserClick={loadNewUserPage} clickEvent={loginUser}/>
       } else if (user.validated && !searchResults){
-        return <FavoritesPage username={user.name} favorites={user.favorites} clickEvent={submitSearch}/>      
+        return <FavoritesPage username={user.name} favorites={user.favorites} clickEvent={submitSearch} clickItem={clickFavorite}/>      
       } else if (user.validated && searchResults){
         return <SearchResultsPage username={user.name} searchResults={searchResults} clickItem={clickSearchItem} clickEvent={submitSearch}/>      
       }

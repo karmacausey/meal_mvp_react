@@ -6,7 +6,7 @@ CREATE TABLE Users(
    password CHAR(50) NOT NULL   
 );
 
-DROP TABLE IF EXISTS top_ten;
+DROP TABLE IF EXISTS Favorites;
 
 CREATE TABLE Favorites(
    id SERIAL PRIMARY KEY NOT NULL,

@@ -8,8 +8,9 @@ function SearchResultsPage(props){
             <div className="centerDiv"><h3>{props.username}'s search results</h3></div>
             <SearchBar clickEvent={props.clickEvent} btnTitle={"search"}/>
             <div className="pageList">
-                {props.searchResults.map((elem) => {
-                    return <RecipeItem elem={elem} clickItem={props.clickItem}/>
+                {props.searchResults.map((elem, index) => {
+                    console.log(elem.recipe_id)
+                    return <RecipeItem elem={elem} clickEvent={props.clickItem} id={elem.recipe_id} key={index}/>                
                 })}
             </div>
         </div>

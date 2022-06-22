@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //must reset headers for deployment
-//Website you wish to allow to connect
+//Setting CORS policy headers
 function setCorsHeader(req, res, next){
     cors();
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -17,7 +17,7 @@ function setCorsHeader(req, res, next){
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     next();
 }
-
+//call middleware to set the CORS headers
 app.use(setCorsHeader)
 
 //Create: new user
@@ -33,16 +33,16 @@ app.post("/newuser", async (req, res) => {
 //Read: user gets validated by database and if they have favorites they are loaded to the user object that is sent back
 app.post("/user", async (req, res) => {
     try {        
-        console.log("calling user route")
-        console.log(`req.body.name: ${req.body.name} | req.body.password: ${req.body.password}`)
+        // console.log("calling user route")
+        // console.log(`req.body.name: ${req.body.name} | req.body.password: ${req.body.password}`)
         const userData = await db.query('SELECT user_name, user_id, password FROM Users WHERE user_name = $1 AND password = $2;', [req.body.name, req.body.password])
-        console.log(`userData.rows[0].user_id: ${userData.rows[0].user_id}`)
+        // console.log(`userData.rows[0].user_id: ${userData.rows[0].user_id}`)
         if (userData.rows.length !== 0) {
             const userFavorites = await db.query('SELECT meal_id FROM Favorites WHERE user_id = $1;', [userData.rows[0].user_id]);
             //console.log(`userFavorites.rows[0].meal_id: ${userFavorites.rows[0].meal_id}`)
             const favArray = [];
             for (let i = 0; i < userFavorites.rows.length; i++) {
-                console.log("inside /user for loop")
+                //console.log("inside /user for loop")
                 
                 let resp = await fetch(`https://api.edamam.com/api/recipes/v2/${userFavorites.rows[i].meal_id}?type=public&app_id=e5eac9e7&app_key=ce3b16e9e298aa97fbc47836d7c160bf%09`, {
                     method: "GET",
@@ -67,14 +67,14 @@ app.post("/user", async (req, res) => {
                 validated: true,
                 favorites: favArray
             }
-            console.log(`user.name: ${user.name}`);
-            console.log(`user.user_id: ${user.user_id}`);
-            console.log(`user.password: ${user.password}`);
-            console.log(`user.validated: ${user.validated}`);
-            console.log(`user.favorites[0]: ${user.favorites[0]}`);
+            // console.log(`user.name: ${user.name}`);
+            // console.log(`user.user_id: ${user.user_id}`);
+            // console.log(`user.password: ${user.password}`);
+            // console.log(`user.validated: ${user.validated}`);
+            // console.log(`user.favorites[0]: ${user.favorites[0]}`);
             res.json(user);
         } else {
-            console.log(`userData.rows.length: ${userData.rows.length}`)
+            //console.log(`userData.rows.length: ${userData.rows.length}`)
             res.json({ validated: false })
         }
     } catch (error) {
@@ -97,7 +97,7 @@ app.get("/search/:keyword", async (req, res) => {
         let resultArray = [];
         for (let i = 0; i < data.hits.length && i < 50; i++) {
             let uriParts = data.hits[i].recipe.uri.split('_');
-            let rID = uriParts[1];
+            let rID = uriParts[uriParts.length - 1];
             console.log("rID: " + rID);
             const currentResult = {
                 recipe_id: `${rID}`,
@@ -116,6 +116,7 @@ app.get("/search/:keyword", async (req, res) => {
 //create: add a users new favorite recipe to the database
 app.post("/favorite", async (req, res) => {
     try {
+        console.log(`req.body.user_id: ${req.body.user_id}, req.body.meal_id: ${req.body.meal_id}`)
         const data = await db.query('INSERT INTO Favorites (user_id, meal_id) VALUES ($1,$2);', [req.body.user_id, req.body.meal_id]);
         res.json(req.body);
     } catch (error) {
